@@ -19,13 +19,20 @@
 
         #terminal {
             height: 100%;
-            padding: 100px;
+            padding: 20px;
             box-sizing: border-box;
             overflow-y: auto;
         }
 
+        @media (min-width: 768px) {
+            #terminal {
+                padding: 100px;
+            }
+        }
+
         #output {
-            white-space: pre;
+            white-space: pre-wrap;
+            word-wrap: break-word;
             line-height: 1.5;
         }
 
@@ -79,6 +86,21 @@
         .prompt-tilde {
             color: #40E0D0; /* Turquoise */
         }
+
+        @keyframes blink {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        #cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background-color: #92ba6f;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
@@ -89,6 +111,7 @@
                 <span class="prompt-name">anirudh</span><span class="prompt-at">@</span><span class="prompt-location">portfolio</span><span class="prompt-colon">:</span><span class="prompt-path">$</span><span class="prompt-tilde"> ~</span>
             </span>
             <input type="text" id="command-input" autofocus>
+            <span id="cursor"></span>
         </div>
     </div>
     <script>
@@ -103,7 +126,7 @@
      / ___ \\| | | | | |  | |_| | (_| | | | | |  _ < (_) | |_| |
     /_/   \\_\\_| |_|_|_|   \\__,_|\\__,_|_| |_| |_| \\_\\___/ \\__, |
                                                          |___/ 
-    `;
+        `;
 
         function addToOutput(text) {
             const div = document.createElement('div');
@@ -116,19 +139,20 @@
             window.scrollTo(0, document.body.scrollHeight);
         }
 
-        function typeEffect(element, text, speed = 50) {
-    let i = 0;
-    const timer = setInterval(() => {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-        } else {
-            clearInterval(timer);
-        }
-    }, speed);
-}
         function clearOutput() {
             output.innerHTML = '';
+        }
+
+        function typeEffect(element, text, speed = 50) {
+            let i = 0;
+            const timer = setInterval(() => {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(timer);
+                }
+            }, speed);
         }
 
         const commands = {
@@ -186,10 +210,35 @@
         output.appendChild(welcomeDiv);
         typeEffect(welcomeDiv, 'Welcome to my portfolio! Type "help" for a list of commands.');
 
+        let commandHistory = [];
+        let historyIndex = -1;
+
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                if (historyIndex < commandHistory.length - 1) {
+                    historyIndex++;
+                    input.value = commandHistory[historyIndex];
+                }
+            } else if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                if (historyIndex > -1) {
+                    historyIndex--;
+                    input.value = historyIndex >= 0 ? commandHistory[historyIndex] : '';
+                }
+            }
+        });
+
         input.addEventListener('keyup', function(event) {
             if (event.key === 'Enter') {
                 const command = input.value.trim().toLowerCase();
                 addToOutput('anirudh@portfolio:$ ~ ' + input.value);
+                
+                if (command !== '') {
+                    commandHistory.unshift(command);
+                    historyIndex = -1;
+                }
+                
                 input.value = '';
 
                 if (command in commands) {
