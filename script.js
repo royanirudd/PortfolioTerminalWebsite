@@ -52,17 +52,20 @@ const commands = {
     },
     about: () => {
         addToOutput('About Me:');
-        addToOutput('I am Anirudh Roy, a passionate developer with a keen interest in [Your Interests].');
-        addToOutput('I specialize in [Your Specializations] and love to create innovative solutions.');
-        // Add more details about yourself
+        addToOutput('');
+        addToOutput('');
     },
     projects: () => {
         addToOutput('My Projects:');
-        addToOutput('1. Project Name - Brief description');
-        addToOutput(`   <a href="https://github.com/yourusername/project1" target="_blank" class="project-link">GitHub</a>`);
-        addToOutput('2. Another Project - Brief description');
-        addToOutput(`   <a href="https://github.com/yourusername/project2" target="_blank" class="project-link">GitHub</a>`);
-        // Add more projects
+        addToOutput(`> This Terminal Profile Website`);
+        addToOutput(`   <a href="https://github.com/royanirudd/PortfolioTerminalWebsite" target="_blank" class="project-link">GitHub</a>`);
+        addToOutput('> Mock Travel Booking Website');
+        addToOutput(`   <a href="https://github.com/royanirudd/travelSite" target="_blank" class="project-link">GitHub</a>`);
+        addToOutput('> Contact Management CRUD application');
+        addToOutput(`   <a href="
+https://github.com/royanirudd/DataScienceProjects" target="_blank">GitHub</a>`);
+        addToOutput(``)
+
     },
     skills: () => {
         addToOutput('Technical Skills:');
@@ -74,15 +77,15 @@ const commands = {
     },
     contact: () => {
         addToOutput('Contact Information:');
-        addToOutput('Email: your.email@example.com');
-        addToOutput('LinkedIn: https://www.linkedin.com/in/yourprofile');
-        addToOutput('GitHub: https://github.com/yourusername');
-        // Add other contact methods if desired
+        addToOutput('Email: <span class="contactLink">aniruddroy704@gmail.com</span>');
+        addToOutput('LinkedIn: <a href="https://www.linkedin.com/in/anirudh-roy1" target="_blank">linkedin.com/in/anirudh-roy1</a>');
+        addToOutput('GitHub: <a href="https://github.com/royanirudd" target="_blank">royanirudh</a>');
+        addToOutput('Mobile: <span class="contactLink">+91 8050581848</span>');
     },
     resume: () => {
         addToOutput('Downloading resume...');
         // Replace with the actual path to your resume
-        window.open('assets/your_resume.pdf', '_blank');
+        window.open('https://drive.google.com/file/d/1KeIRrQYfUFTIZHS55qTpnjJFwBgFNXZM/view?usp=sharing', '_blank');
     },
     clear: () => {
         clearOutput();

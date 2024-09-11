@@ -73,6 +73,14 @@ body.light-mode {
     color: #0000EE;
 }
 
+.light_mode #output span.contactLink{
+    color: #0000EE;
+}
+
+.dark-mode #output span.contactLink{
+    color: #F0EAD6;
+}
+
 #output a:hover, #output a.project-link:hover {
     text-decoration: underline;
 }
