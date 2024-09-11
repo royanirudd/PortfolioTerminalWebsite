@@ -13,8 +13,17 @@
             padding: 0;
             height: 100%;
             font-family: 'Victor Mono', monospace;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
             background-color: #1a1b1f;
             color: #92ba6f;
+        }
+
+        body.light-mode {
+            background-color: #f0f0f0;
+            color: #333;
         }
 
         #terminal {
@@ -49,19 +58,29 @@
             flex-grow: 1;
             background-color: transparent;
             border: none;
-            color: #92ba6f;
             font-family: inherit;
             font-size: inherit;
             outline: none;
         }
 
+        .dark-mode #command-input {
+            color: #92ba6f;
+        }
+
+        .light-mode #command-input {
+            color: #333;
+        }
+
         #output a, #output a.project-link {
-            color: #F0EAD6;
             text-decoration: none;
         }
 
-        #output a:visited, #output a.project-link:visited {
+        .dark-mode #output a, .dark-mode #output a.project-link {
             color: #F0EAD6;
+        }
+
+        .light-mode #output a, .light-mode #output a.project-link {
+            color: #FBF1C9;
         }
 
         #output a:hover, #output a.project-link:hover {
@@ -69,26 +88,90 @@
         }
 
         .prompt-name {
-            color: #5F9EA0; /* Cadet Blue */
+            color: #5F9EA0;
         }
         .prompt-at {
-            color: #FF6347; /* Tomato */
+            color: #FF6347;
         }
         .prompt-location {
-            color: #98FB98; /* Pale Green */
+            color: #98FB98;
         }
         .prompt-colon {
-            color: #DDA0DD; /* Plum */
+            color: #DDA0DD;
         }
         .prompt-path {
-            color: #FFD700; /* Gold */
+            color: #FFD700;
         }
         .prompt-tilde {
-            color: #40E0D0; /* Turquoise */
+            color: #40E0D0;
+        }
+
+        /* Toggle switch styles */
+        .theme-switch-wrapper {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .theme-switch {
+            display: inline-block;
+            height: 34px;
+            position: relative;
+            width: 60px;
+        }
+
+        .theme-switch input {
+            display: none;
+        }
+
+        .slider {
+            background-color: #ccc;
+            bottom: 0;
+            cursor: pointer;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: .4s;
+        }
+
+        .slider:before {
+            background-color: #fff;
+            bottom: 4px;
+            content: "";
+            height: 26px;
+            left: 4px;
+            position: absolute;
+            transition: .4s;
+            width: 26px;
+        }
+
+        input:checked + .slider {
+            background-color: #66bb6a;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
         }
     </style>
 </head>
-<body>
+<body class="dark-mode">
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+        </label>
+    </div>
     <div id="terminal">
         <div id="output"></div>
         <div id="input-line">
@@ -101,6 +184,7 @@
     <script>
         const output = document.getElementById('output');
         const input = document.getElementById('command-input');
+        const checkbox = document.getElementById('checkbox');
 
         const asciiArt = `
         _          _                _ _       ____             
@@ -196,6 +280,39 @@
         let commandHistory = [];
         let historyIndex = -1;
 
+        function autocomplete(input) {
+            const commandNames = Object.keys(commands);
+            const matchingCommands = commandNames.filter(cmd => cmd.startsWith(input));
+            
+            if (matchingCommands.length === 1) {
+                return matchingCommands[0];
+            } else if (matchingCommands.length > 1) {
+                addToOutput(matchingCommands.join('  '));
+                return input;
+            }
+            
+            return input;
+        }
+
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Tab') {
+                event.preventDefault();
+                input.value = autocomplete(input.value);
+            } else if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                if (historyIndex < commandHistory.length - 1) {
+                    historyIndex++;
+                    input.value = commandHistory[historyIndex];
+                }
+            } else if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                if (historyIndex > -1) {
+                    historyIndex--;
+                    input.value = historyIndex >= 0 ? commandHistory[historyIndex] : '';
+                }
+            }
+        });
+
         input.addEventListener('keyup', function(event) {
             if (event.key === 'Enter') {
                 const command = input.value.trim().toLowerCase();
@@ -216,19 +333,12 @@
             }
         });
 
-        input.addEventListener('keydown', function(event) {
-            if (event.key === 'ArrowUp') {
-                event.preventDefault();
-                if (historyIndex < commandHistory.length - 1) {
-                    historyIndex++;
-                    input.value = commandHistory[historyIndex];
-                }
-            } else if (event.key === 'ArrowDown') {
-                event.preventDefault();
-                if (historyIndex > -1) {
-                    historyIndex--;
-                    input.value = historyIndex >= 0 ? commandHistory[historyIndex] : '';
-                }
+        // Theme switch functionality
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.replace('dark-mode', 'light-mode');
+            } else {
+                document.body.classList.replace('light-mode', 'dark-mode');
             }
         });
     </script>
