@@ -22,7 +22,7 @@
         }
 
         body.light-mode {
-            background-color: #f0f0f0;
+            background-color: #FBF1C9;
             color: #333;
         }
 
@@ -80,7 +80,7 @@
         }
 
         .light-mode #output a, .light-mode #output a.project-link {
-            color: #FBF1C9;
+            color: #0000EE;
         }
 
         #output a:hover, #output a.project-link:hover {
@@ -232,6 +232,7 @@
                 addToOutput('  contact  - Display my contact information');
                 addToOutput('  resume   - Download my resume');
                 addToOutput('  clear    - Clear the terminal screen');
+                addToOutput('  history  - Show command history');
             },
             about: () => {
                 addToOutput('About Me:');
@@ -269,6 +270,12 @@
             },
             clear: () => {
                 clearOutput();
+            },
+            history: () => {
+                addToOutput('Command history:');
+                commandHistory.slice().reverse().forEach((cmd, index) => {
+                    addToOutput(`${commandHistory.length - index}: ${cmd}`);
+                });
             }
         };
 
