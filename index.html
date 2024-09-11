@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anirudh Roy - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Victor Mono', monospace;
+            background-color: #1a1b1f;
+            color: #92ba6f;
+        }
+
+        #terminal {
+            height: 100%;
+            padding: 100px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        #output {
+            white-space: pre;
+            line-height: 1.5;
+        }
+
+        #input-line {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        #prompt {
+            margin-right: 5px;
+        }
+
+        #command-input {
+            flex-grow: 1;
+            background-color: transparent;
+            border: none;
+            color: #92ba6f;
+            font-family: inherit;
+            font-size: inherit;
+            outline: none;
+        }
+
+        #output a, #output a.project-link {
+            color: #F0EAD6;
+            text-decoration: none;
+        }
+
+        #output a:visited, #output a.project-link:visited {
+            color: #F0EAD6;
+        }
+
+        #output a:hover, #output a.project-link:hover {
+            text-decoration: underline;
+        }
+
+        .prompt-name {
+            color: #5F9EA0; /* Cadet Blue */
+        }
+        .prompt-at {
+            color: #FF6347; /* Tomato */
+        }
+        .prompt-location {
+            color: #98FB98; /* Pale Green */
+        }
+        .prompt-colon {
+            color: #DDA0DD; /* Plum */
+        }
+        .prompt-path {
+            color: #FFD700; /* Gold */
+        }
+        .prompt-tilde {
+            color: #40E0D0; /* Turquoise */
+        }
+    </style>
+</head>
+<body>
+    <div id="terminal">
+        <div id="output"></div>
+        <div id="input-line">
+            <span id="prompt">
+                <span class="prompt-name">anirudh</span><span class="prompt-at">@</span><span class="prompt-location">portfolio</span><span class="prompt-colon">:</span><span class="prompt-path">$</span><span class="prompt-tilde"> ~</span>
+            </span>
+            <input type="text" id="command-input" autofocus>
+        </div>
+    </div>
+    <script>
+        const output = document.getElementById('output');
+        const input = document.getElementById('command-input');
+        const prompt = document.getElementById('prompt');
+
+        const asciiArt = `
+        _          _                _ _       ____             
+       / \\   _ __ (_)_ __ _   _  __| | |__   |  _ \\ ___  _   _ 
+      / _ \\ | '_ \\| | '__| | | |/ _\` | '_ \\  | |_) / _ \\| | | |
+     / ___ \\| | | | | |  | |_| | (_| | | | | |  _ < (_) | |_| |
+    /_/   \\_\\_| |_|_|_|   \\__,_|\\__,_|_| |_| |_| \\_\\___/ \\__, |
+                                                         |___/ 
+    `;
+
+        function addToOutput(text) {
+            const div = document.createElement('div');
+            if (text.startsWith('anirudh@portfolio:$ ~')) {
+                div.innerHTML = '<span class="prompt-name">anirudh</span><span class="prompt-at">@</span><span class="prompt-location">portfolio</span><span class="prompt-colon">:</span><span class="prompt-path">$</span><span class="prompt-tilde"> ~</span>' + text.slice('anirudh@portfolio:$ ~'.length);
+            } else {
+                div.innerHTML = text;
+            }
+            output.appendChild(div);
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        function typeEffect(element, text, speed = 50) {
+    let i = 0;
+    const timer = setInterval(() => {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+        } else {
+            clearInterval(timer);
+        }
+    }, speed);
+}
+        function clearOutput() {
+            output.innerHTML = '';
+        }
+
+        const commands = {
+            help: () => {
+                addToOutput('Available commands:');
+                addToOutput('  help     - Show this help message');
+                addToOutput('  about    - Display information about me');
+                addToOutput('  projects - List my projects');
+                addToOutput('  skills   - Show my technical skills');
+                addToOutput('  contact  - Display my contact information');
+                addToOutput('  resume   - Download my resume');
+                addToOutput('  clear    - Clear the terminal screen');
+            },
+            about: () => {
+                addToOutput('About Me:');
+                addToOutput('I am Anirudh Roy, a passionate developer with a keen interest in [Your Interests].');
+                addToOutput('I specialize in [Your Specializations] and love to create innovative solutions.');
+                // Add more details about yourself
+            },
+            projects: () => {
+                addToOutput('My Projects:');
+                addToOutput('1. Project Name - Brief description');
+                addToOutput(`   <a href="https://github.com/yourusername/project1" target="_blank" class="project-link">GitHub</a>`);
+                addToOutput('2. Another Project - Brief description');
+                addToOutput(`   <a href="https://github.com/yourusername/project2" target="_blank" class="project-link">GitHub</a>`);
+                // Add more projects
+            },
+            skills: () => {
+                addToOutput('Technical Skills:');
+                addToOutput('- Programming Languages: JavaScript, Python, Java');
+                addToOutput('- Web Technologies: HTML, CSS, React, Node.js');
+                addToOutput('- Databases: MySQL, MongoDB');
+                addToOutput('- Tools: Git, Docker, AWS');
+                // Add or modify skills as needed
+            },
+            contact: () => {
+                addToOutput('Contact Information:');
+                addToOutput('Email: your.email@example.com');
+                addToOutput('LinkedIn: https://www.linkedin.com/in/yourprofile');
+                addToOutput('GitHub: https://github.com/yourusername');
+                // Add other contact methods if desired
+            },
+            resume: () => {
+                addToOutput('Downloading resume...');
+                // Replace with the actual path to your resume
+                window.open('assets/your_resume.pdf', '_blank');
+            },
+            clear: () => {
+                clearOutput();
+            }
+        };
+
+        addToOutput(asciiArt);
+        const welcomeDiv = document.createElement('div');
+        output.appendChild(welcomeDiv);
+        typeEffect(welcomeDiv, 'Welcome to my portfolio! Type "help" for a list of commands.');
+
+        input.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                const command = input.value.trim().toLowerCase();
+                addToOutput('anirudh@portfolio:$ ~ ' + input.value);
+                input.value = '';
+
+                if (command in commands) {
+                    commands[command]();
+                } else {
+                    addToOutput('Command not recognized. Type "help" for a list of commands.');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
