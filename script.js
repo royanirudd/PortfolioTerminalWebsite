@@ -52,8 +52,10 @@ const commands = {
     },
     about: () => {
         addToOutput('About Me:');
-        addToOutput('');
-        addToOutput('');
+        addToOutput(`Recent graduate with a degree in Mathematics, Statistics, and Computer Science, eager to apply strong 
+analytical and technical skills to business analysis. Passionate utilising data-driven insights to drive 
+innovation and committed to continuous learning and professional growth.Seeking entry level roles in 
+software development, finance/business analysis or data analytics.`);
     },
     projects: () => {
         addToOutput('My Projects:');
@@ -61,10 +63,14 @@ const commands = {
         addToOutput(`   <a href="https://github.com/royanirudd/PortfolioTerminalWebsite" target="_blank" class="project-link">GitHub</a>`);
         addToOutput('> Mock Travel Booking Website');
         addToOutput(`   <a href="https://github.com/royanirudd/travelSite" target="_blank" class="project-link">GitHub</a>`);
-        addToOutput('> Contact Management CRUD application');
+        addToOutput('> Collection of DataScience projects');
         addToOutput(`   <a href="
 https://github.com/royanirudd/DataScienceProjects" target="_blank">GitHub</a>`);
-        addToOutput(``)
+        addToOutput(`> Idle game on Godot`);
+        addToOutput(`   <a href="
+https://github.com/royanirudd/IdleGame" target="_blank">GitHub</a>`);
+        addToOutput(`> Contact Management CRUD application`);
+        addToOutput(`   <a href="https://github.com/royanirudd/Task2CRUD" target="_blank">GitHub</a>`);
 
     },
     skills: () => {
