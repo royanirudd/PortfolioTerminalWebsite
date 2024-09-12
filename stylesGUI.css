@@ -1,0 +1,46 @@
+body {
+    font-family: 'Victor Mono', monospace;
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0;
+    padding: 0;
+}
+
+body.dark-mode {
+    background-color: #1a1b1f;
+    color: #92ba6f;
+}
+
+body.light-mode {
+    background-color: #FBF1C9;
+    color: #333;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+main {
+    padding: 2rem;
+}
+
+/* Copy over the theme switch styles from your original CSS */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+/* ... (rest of the theme switch styles) ... */

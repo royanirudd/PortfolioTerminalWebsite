@@ -1,6 +1,7 @@
 const output = document.getElementById('output');
 const input = document.getElementById('command-input');
 const checkbox = document.getElementById('checkbox');
+const version = document.querySelector('meta[name="version"]').getAttribute('content');
 
 const asciiArt = `
     _          _                _ _       ____             
@@ -36,6 +37,18 @@ function typeEffect(element, text, speed = 50) {
             clearInterval(timer);
         }
     }, speed);
+}
+
+
+//Save dark mode preference when changing
+function Theme() {}{
+    if (this.checked) {
+        document.bnody.classList.replace('dark-mode', 'light-mode');
+        localStorage.setItem('theme', 'light-mode');
+    } else {
+        document.body.classList.replace('light-mode', 'dark-mode');
+        localStorage.setItem('theme', 'dark-mode');
+    }
 }
 
 const commands = {
@@ -75,11 +88,10 @@ https://github.com/royanirudd/IdleGame" target="_blank">GitHub</a>`);
     },
     skills: () => {
         addToOutput('Technical Skills:');
-        addToOutput('- Programming Languages: JavaScript, Python, Java');
+        addToOutput('- Programming Languages: JavaScript, Python, Java, C');
         addToOutput('- Web Technologies: HTML, CSS, React, Node.js');
         addToOutput('- Databases: MySQL, MongoDB');
         addToOutput('- Tools: Git, Docker, AWS');
-        // Add or modify skills as needed
     },
     contact: () => {
         addToOutput('Contact Information:');
@@ -90,7 +102,6 @@ https://github.com/royanirudd/IdleGame" target="_blank">GitHub</a>`);
     },
     resume: () => {
         addToOutput('Downloading resume...');
-        // Replace with the actual path to your resume
         window.open('https://drive.google.com/file/d/1KeIRrQYfUFTIZHS55qTpnjJFwBgFNXZM/view?usp=sharing', '_blank');
     },
     clear: () => {
@@ -101,6 +112,15 @@ https://github.com/royanirudd/IdleGame" target="_blank">GitHub</a>`);
         commandHistory.slice().reverse().forEach((cmd, index) => {
             addToOutput(`${commandHistory.length - index}: ${cmd}`);
         });
+    },
+    'cd gui': () => {
+        addToOutput('Switching to GUI mode...');
+        setTimeout(()=>{
+            window.location.href = 'indexGUI.html';
+        }, 1000);
+    },
+    version: () => {
+        addToOutput(`Anirudh Roy Portfolio Terminal v${version}`);
     }
 };
 
@@ -171,5 +191,13 @@ checkbox.addEventListener('change', function() {
         document.body.classList.replace('dark-mode', 'light-mode');
     } else {
         document.body.classList.replace('light-mode', 'dark-mode');
+    }
+});
+
+window.addEventListener('load', ()=> {
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme) {
+        document.body.className = savedTheme;
+        document.getElementById('checkbox').checked = savedTheme ==='light-mode';
     }
 });
