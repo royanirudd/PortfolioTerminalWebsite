@@ -2,14 +2,21 @@
     display: grid;
     grid-template-rows: repeat(8,1fr);
     grid-template-columns: repeat(4,1fr);
-    gap: 10px;
+    gap: 15px;
     padding: 10px;
     height: 100vh;
     width: 100%;
+    border-style: solid;
 }
 .item {
     transition: all 0.3s ease;
     cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: auto;
+    border-style: solid;
 }
 .item:hover {
     transform: scale(1.05);
@@ -23,50 +30,24 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
-    overflow: auto;
+    
 }
 .item-1 h1{
     font-size: 2.5em;
     margin-bottom: 10px;
 }
 .item-1 p {
+    display: flex;
     font-size:1.2em;
     margin-bottom:20px;
 }
-.social-links {
+.site-buttons{
     display: flex;
     gap: 15px;
-}
-
-.icon-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    color: white;
-    transition: all 0.3s ease;
-}
-
-.icon-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.github {
-    background-color: #24292e;
-}
-
-.linkedin {
-    background-color: #0077b5;
-}
-
-.icon-button i {
-    font-size: 1.2em;
+    margin-top: auto;
+    gap: 100px;
 }
 .item-2 {
     grid-column: 4/5;
@@ -82,6 +63,7 @@
     grid-column: 2/3;
     grid-row: 5/6;
     background: black;
+    color: white;
 }
 .item-5 {
     grid-column: 2/3;
