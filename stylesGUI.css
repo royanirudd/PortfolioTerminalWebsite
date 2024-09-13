@@ -1,3 +1,15 @@
+html {
+    font-family: "Montserrat", sans-serif;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #64488e;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%230c021b' fill-opacity='0.4' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-size: 28px 49px;
+}
+
 :root {
     --background-dark: #121212;
     --text-dark: #ffffff;
@@ -10,13 +22,24 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 body.light-mode {
-    background-color: #f5f5f5;
+    background-color: #d1e9f6; 
     color: #333;
 }
 body.dark-mode {
     background-color: #222;
     color: #fff;
 }
+
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 10px;
+    padding: 20px;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+
 .switch {
     position: absolute;
     top: 20px;
@@ -55,6 +78,8 @@ body.dark-mode {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     border-radius: 10px;
     border: none;
+    background: #f1d3ce;
+    
 }
 
 .theme-toggle {
@@ -118,7 +143,7 @@ body.light-mode .item {
     border-color: var(--border-light);
 }
 body.light-mode .site-buttons button {
-    background-color: #ddd;
+    background-color: #d1e9f6
     color: #333;
 }
 
@@ -136,14 +161,12 @@ body.dark-mode .site-buttons button {
 .item-1 {
     grid-column: 1/4;
     grid-row: 1/5;
-    background: red;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    
-}
+ }
 .item-1 h1{
     font-size: 2.5em;
     margin-bottom: 10px;
@@ -168,6 +191,24 @@ body.dark-mode .site-buttons button {
     font-size: 1.2em;
     transition: background-color 0.3s ease;
 }
+.social-button {
+    border: 2px solid transparent; /* Initial border is transparent */
+    border-radius: 5px;
+    padding: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.social-button.github {
+    border-color: #333; 
+}
+
+.social-button.linkedin {
+    border-color: #333;
+}
+
+.social-button.terminal {
+    border-color: #333; 
+}
 
 .site-buttons button i{
     font-size: 1.5em;
@@ -178,49 +219,79 @@ body.dark-mode .site-buttons button {
 .item-2 {
     grid-column: 4/5;
     grid-row: 1/7;
-    background: green;
+    font-size: 14px;
+ }
+.item-3 ul {
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
 }
 .item-3 {
     grid-column: 1/2;
     grid-row: 5/9;
-    background: orange;
+ }
+.item-3 a {
+    text-decoration: none;
+    color: inherit;
 }
 .item-4 {
     grid-column: 2/3;
     grid-row: 5/6;
-    background: black;
-    color: white;
+    background: #f6eacb;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
 }
+
+.animation-video {
+    height: auto; /* Maintain aspect ratio */
+
+    border-radius: 10px; /* Optional: For rounded corners */
+
+    max-width: 300px; /* Set a maximum width */
+    max-height: 75px; 
+}
+
 .item-5 {
     grid-column: 2/3;
     grid-row: 6/8;
-    background: lime;
+    overflow: hidden;
+    
 }
 .item-6 {
     grid-column: 2/3;
     grid-row: 8/9;
-    background: purple;
+    overflow: hidden;
 }
 .item-7 {
     grid-column: 3/4;
     grid-row: 5/6;
-    background: cyan;
 
 }.item-8 {
     grid-column: 3/4;
     grid-row: 6/8;
-    background: blue;
-}.item-9 {
-    grid-column: 3/4;
-    grid-row: 8/9;
-    background: brown;
 }
+
+.item-9 {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Space between buttons */
+}
+
+/* Style for color picker buttons */
 .color-picker {
     display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin top: 10px;
+    justify-content: center; /* Center horizontally */
+    gap: 10px; /* Space between buttons */
 }
+
 .color-btn {
     width: 30px;
     height: 30px;
@@ -228,17 +299,17 @@ body.dark-mode .site-buttons button {
     cursor: pointer;
     outline: none;
     border-style: solid;
-    border-color: black;
-    border-width: 0.5px;
+    border-width: 0.5px; /* Ensure the border width is visible */
+    border-color: black; /* Initial border color */
 }
+
 .item-10 {
     grid-column: 4/5;
     grid-row: 7/8;
-    background: yellow;
+    overflow: hidden;
 }.item-11 {
     grid-column: 4/5;
     grid-row: 8/9;
-    background: indigo;
 }
 
 
@@ -306,7 +377,7 @@ body.dark-mode .site-buttons button {
 }
 
 /* Media queries for small screens (max-width: 768px) */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
     .container {
         grid-template-columns: 1fr; /* 1 column */
         grid-template-rows: repeat(11, 1fr); /* Stacking vertically */
@@ -316,56 +387,94 @@ body.dark-mode .site-buttons button {
     .item-1 {
         grid-column: 1/2;
         grid-row: 1/2;
+   min-width: 400px;
+    min-height: 300px;
+
     }
 
     .item-2 {
         grid-column: 1/2;
         grid-row: 2/3;
+   min-width: 400px;
+    min-height: 400px;
+
     }
 
     .item-3 {
         grid-column: 1/2;
         grid-row: 3/4;
+   min-width: 300px;
+    min-height: 150px;
+
     }
 
     .item-4 {
         grid-column: 1/2;
         grid-row: 4/5;
+    min-width: 300px;
+    min-height: 75px;
+
+
     }
 
     .item-5 {
         grid-column: 1/2;
         grid-row: 5/6;
+        min-width: 300px; 
+        min-height: 400px;
     }
 
     .item-6 {
         grid-column: 1/2;
         grid-row: 6/7;
+        min-width: 300px;
+        min-height: 75px;
+
+
     }
 
     .item-7 {
         grid-column: 1/2;
         grid-row: 7/8;
+        min-width: 300px;
+        min-height: 75px;
+
+
     }
 
     .item-8 {
         grid-column: 1/2;
         grid-row: 8/9;
+
+        min-width: 300px; 
+        min-height: 400px;
     }
 
     .item-9 {
         grid-column: 1/2;
         grid-row: 9/10;
+        min-width: 300px;
+        min-height: 75px;
+
+
     }
 
     .item-10 {
         grid-column: 1/2;
         grid-row: 10/11;
+        min-width: 300px;
+        min-height: 75px;
+
+
     }
 
     .item-11 {
         grid-column: 1/2;
         grid-row: 11/12;
+        min-width: 300px;
+        min-height: 75px;
+
+
     }
 }
 

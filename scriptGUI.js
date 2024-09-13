@@ -13,23 +13,18 @@ themeSwitch.addEventListener('change', () => {
 });
 
 function changeBorderColor(color) {
-    const items = document.querySelectorAll('.item');
-    const buttons = document.querySelectorAll('.site-buttons button');
-    
-    // Change the border color of all items
-    items.forEach(item => {
-        item.style.borderColor = color;
-    });
+    const buttons = document.querySelectorAll('.item-1 .social-button');
 
-    // Change the background color of buttons in item 1
+    // Change the border color of all buttons in item-1
     buttons.forEach(button => {
-        button.style.backgroundColor = color;
+        button.style.borderColor = color;
     });
 }
+
+
 function toggleMode() {
     const body = document.body;
     body.classList.toggle('light-mode');
     body.classList.toggle('dark-mode');
 }
-
 
