@@ -60,6 +60,7 @@ const commands = {
         addToOutput('  skills   - Show my technical skills');
         addToOutput('  contact  - Display my contact information');
         addToOutput('  resume   - Download my resume');
+        addToOutput('  cd gui   - Change to GUI version of site');
         addToOutput('  clear    - Clear the terminal screen');
         addToOutput('  history  - Show command history');
     },
@@ -90,7 +91,7 @@ https://github.com/royanirudd/IdleGame" target="_blank">GitHub</a>`);
         addToOutput('Technical Skills:');
         addToOutput('- Programming Languages: JavaScript, Python, Java, C');
         addToOutput('- Web Technologies: HTML, CSS, React, Node.js');
-        addToOutput('- Databases: MySQL, MongoDB');
+        addToOutput('- Databases: MySQL, MongoDB, MS SQL Server');
         addToOutput('- Tools: Git, Docker, AWS');
     },
     contact: () => {
