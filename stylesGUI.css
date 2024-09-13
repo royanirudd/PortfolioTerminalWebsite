@@ -5,7 +5,7 @@ html {
 html, body {
     height: 100%;
     margin: 0;
-    background-color: #64488e;
+    background-color: #222222;
 background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%230c021b' fill-opacity='0.4' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     background-size: 28px 49px;
 }
@@ -73,13 +73,26 @@ main {
     align-items: center;
     text-align: center;
     overflow: auto;
-    background-color: tgb(255,255,255,0.9);
+    background-color: rgb(255,255,255,0.9);
     color: #333;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     border-radius: 10px;
     border: none;
     background: #f1d3ce;
-    
+    padding: 20px;
+}
+
+.item h3, .item p, .item ul {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.item h3 {
+    margin-bottom: 10px;
+}
+.item p {
+    margin-bottom: 10px;
 }
 
 .theme-toggle {
@@ -158,14 +171,28 @@ body.dark-mode .site-buttons button {
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     z-index: 1;
 }
+
+.item-1 h3, .item-1 p {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.item-1 .site-buttons {
+    display: flex;
+    gap: 10px; /* Adjust spacing between buttons */
+}
+
 .item-1 {
     grid-column: 1/4;
     grid-row: 1/5;
-    padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 20px;
+    font-size: 12px;
+    overflow: hidden;
  }
 .item-1 h1{
     font-size: 2.5em;
@@ -178,7 +205,6 @@ body.dark-mode .site-buttons button {
 }
 .site-buttons{
     display: flex;
-    gap: 15px;
     margin-top: auto;
     gap: 100px;
 }
@@ -192,7 +218,7 @@ body.dark-mode .site-buttons button {
     transition: background-color 0.3s ease;
 }
 .social-button {
-    border: 2px solid transparent; /* Initial border is transparent */
+    border: 2px solid transparent; 
     border-radius: 5px;
     padding: 10px;
     transition: border-color 0.3s ease;
@@ -219,12 +245,16 @@ body.dark-mode .site-buttons button {
 .item-2 {
     grid-column: 4/5;
     grid-row: 1/7;
-    font-size: 14px;
+    font-size: 12px;
  }
 .item-3 ul {
-  list-style-type: none; /* Remove bullets */
-  padding: 0; /* Remove padding */
-  margin: 0; /* Remove margins */
+  list-style-type: none;
+  padding: 0;
+  margin: 0; 
+}
+.item-3 li {
+    padding: 20px;
+    padding-left: 0;
 }
 .item-3 {
     grid-column: 1/2;
@@ -271,6 +301,15 @@ body.dark-mode .site-buttons button {
 .item-7 {
     grid-column: 3/4;
     grid-row: 5/6;
+    background: #f6eacb;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
 
 }.item-8 {
     grid-column: 3/4;
@@ -315,6 +354,13 @@ body.dark-mode .site-buttons button {
 
 /* Media queries for medium-sized screens (max-width: 1200px) */
 @media screen and (max-width: 1200px) {
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #64488e;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%230c021b' fill-opacity='0.4' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-size: 28px 49px;
+}
     .container {
         grid-template-columns: repeat(2, 1fr); /* 2 columns */
         grid-template-rows: repeat(8, 1fr);
@@ -334,6 +380,12 @@ body.dark-mode .site-buttons button {
         grid-column: 2/3;
         grid-row: 4/6;
     }
+item-3 ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0; 
+}
+
 
     .item-4 {
         grid-column: 1/2;
@@ -378,6 +430,13 @@ body.dark-mode .site-buttons button {
 
 /* Media queries for small screens (max-width: 768px) */
 @media screen and (max-width: 900px) {
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #222222;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%230c021b' fill-opacity='0.4' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-size: 28px 49px;
+}
     .container {
         grid-template-columns: 1fr; /* 1 column */
         grid-template-rows: repeat(11, 1fr); /* Stacking vertically */
@@ -388,7 +447,7 @@ body.dark-mode .site-buttons button {
         grid-column: 1/2;
         grid-row: 1/2;
    min-width: 400px;
-    min-height: 300px;
+    min-height: 450px;
 
     }
 
@@ -396,7 +455,7 @@ body.dark-mode .site-buttons button {
         grid-column: 1/2;
         grid-row: 2/3;
    min-width: 400px;
-    min-height: 400px;
+    min-height: 375px;
 
     }
 
@@ -404,8 +463,16 @@ body.dark-mode .site-buttons button {
         grid-column: 1/2;
         grid-row: 3/4;
    min-width: 300px;
-    min-height: 150px;
+    min-height: 250px;
+        font-size: 12px;
+        overflow: hidden;
+    }
+item-3 ul {
+  list-style-type: none;
+}
 
+    item-3 li {
+        padding: 0;
     }
 
     .item-4 {
@@ -473,7 +540,7 @@ body.dark-mode .site-buttons button {
         grid-row: 11/12;
         min-width: 300px;
         min-height: 75px;
-
+        overflow: hidden;
 
     }
 }
