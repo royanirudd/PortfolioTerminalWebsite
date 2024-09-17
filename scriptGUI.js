@@ -37,27 +37,21 @@ function toggleMode() {
     body.classList.toggle('dark-mode');
 }
 
-// Open modal when clicking on items
-item5.onclick = function() {
-    modal5.style.display = "block";
-}
-
-item8.onclick = function() {
-    modal8.style.display = "block";
-}
-
-// Close modal when clicking on close button
-for (let closeButton of closeButtons) {
-    closeButton.onclick = function() {
-        modal5.style.display = "none";
-        modal8.style.display = "none";
+function updateContent() {
+    var mobNoneElements = document.querySelectorAll('.item-3 .mob-none');
+    if (window.innerWidth <= 900) {
+        mobNoneElements.forEach(function(element) {
+            element.style.display = 'none';
+        });
+    } else {
+        mobNoneElements.forEach(function(element) {
+            element.style.display = 'list-item';
+        });
     }
 }
 
-// Close modal when clicking outside of it
-window.onclick = function(event) {
-    if (event.target == modal5 || event.target == modal8) {
-        modal5.style.display = "none";
-        modal8.style.display = "none";
-    }
-}
+// Run on page load
+updateContent();
+
+// Run on window resize
+window.addEventListener('resize', updateContent);
