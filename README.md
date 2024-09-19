@@ -1,6 +1,9 @@
 # Anirudh Roy Portfolio Website
 
 Welcome to the repository for my personal portfolio website. This site showcases my work and skills in both a CLI (Command Line Interface) and GUI (Graphical User Interface) format.
+![GUI](GUI.PNG)
+
+![CLI](CLI.PNG)
 
 ## Overview
 
