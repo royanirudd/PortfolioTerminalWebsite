@@ -10,7 +10,6 @@ const item8 = document.getElementById("item-8");
 const closeButtons = document.getElementsByClassName("close");
 
 
-
 themeSwitch.addEventListener('change', () => {
     if (themeSwitch.checked) {
         body.classList.remove('dark-mode');
@@ -21,37 +20,44 @@ themeSwitch.addEventListener('change', () => {
     }
 });
 
+// Change border color of social buttons
 function changeBorderColor(color) {
     const buttons = document.querySelectorAll('.item-1 .social-button');
 
-    // Change the border color of all buttons in item-1
     buttons.forEach(button => {
         button.style.borderColor = color;
     });
 }
 
-
+// Toggle dark/light mode
 function toggleMode() {
-    const body = document.body;
     body.classList.toggle('light-mode');
     body.classList.toggle('dark-mode');
 }
 
-function updateContent() {
-    var mobNoneElements = document.querySelectorAll('.item-3 .mob-none');
-    if (window.innerWidth <= 900) {
-        mobNoneElements.forEach(function(element) {
-            element.style.display = 'none';
-        });
-    } else {
-        mobNoneElements.forEach(function(element) {
-            element.style.display = 'list-item';
-        });
+// Update visibility of mobile-only elements
+function updateContentSmall() {
+    const mobNoneElements = document.querySelectorAll('.item-3 .mob-none');
+    const displayStyle = window.innerWidth <= 900 ? 'none' : 'list-item';
+    mobNoneElements.forEach(element => {
+        element.style.display = displayStyle;
+    });
+}
+
+// Update project list visibility based on screen size
+function updateContentMedium() {
+    const list = document.getElementById('projectList');
+    if (list) {
+        list.style.display = window.innerWidth <= 1200 ? 'none' : 'block';
     }
 }
 
 // Run on page load
-updateContent();
+updateContentMedium();
+updateContentSmall();
 
 // Run on window resize
-window.addEventListener('resize', updateContent);
+window.addEventListener('resize', () => {
+    updateContentMedium();
+    updateContentSmall();
+});
